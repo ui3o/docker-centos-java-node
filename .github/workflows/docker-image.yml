@@ -1,0 +1,14 @@
+name: Docker Image CI
+on:
+  push:
+    tags:        
+      - '**' # Push events to v1 tag
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: dawidd6/action-get-tag@v
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag ui3o/centos-java-nodejs:${{steps.tag.outputs.tag}}
