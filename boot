@@ -1,5 +1,6 @@
 #!/usr/bin/env -S bash
 
+set -x
 set -e
 
 if [ $BOOT_GITREPO ]; then
