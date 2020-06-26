@@ -1,4 +1,4 @@
-#!/usr/bin/env -S bash -i
+#!/usr/bin/env -S bash
 
 if [ $BOOT_GITREPO ]; then
     ## export BOOT_GITREPO to /etc/bashrc
