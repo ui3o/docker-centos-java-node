@@ -9,6 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: dawidd6/action-get-tag@v1
+    - name: Get tag
+        id: tag
+        uses: dawidd6/action-get-tag@v1
+    - name: Use tag
+        run: echo ${{steps.tag.outputs.tag}}
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag ui3o/centos-java-nodejs:${{steps.tag.outputs.tag}}
