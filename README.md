@@ -2,5 +2,12 @@
 
 Docker image with:
 
-* openjdk11 
+* git
+* openjdk11
 * nodejs12
+
+
+# Feature
+
+* $BOOT_GITREPO, add repository url to clone external script before boot
+* every shebang `#!/usr/bin/env -S bash -i` can access $BOOT_GITREPO environment variable
