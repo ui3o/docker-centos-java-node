@@ -14,5 +14,5 @@ if [ $BOOT_GITREPO ]; then
     REPO_ROOT="${REPO_ROOT%%.git}" && \
     find /$REPO_ROOT -type f -executable -exec sh -c 'f={}&&ln -s {} /bin/${f##*/}' \;
 fi
-
+GLOBAL_VAR_TEST='global var test'
 exec "$@"
