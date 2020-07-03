@@ -16,7 +16,7 @@ if [ $BOOT_GITREPO ]; then
 
     # remove old repo and links
     rm -rf /$BOOT_GITREPO_PATH
-    find /bin/ -xtype l -exec echo rm {} \; -exec rm {} \;
+    find /bin/ -xtype l -exec echo rm broken symlink {} \; -exec rm {} \;
 
     ## link all executable to /bin
     git clone $BOOT_GITREPO
