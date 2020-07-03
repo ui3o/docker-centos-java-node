@@ -1,18 +1,25 @@
-#!/usr/bin/env -S bash
+#!/usr/bin/env -S bash -e
 
 set -x
 set -e
 
 if [ $BOOT_GITREPO ]; then
+
+    # BOOT_GITREPO path find
+    cd /
+    BOOT_GITREPO_PATH="${BOOT_GITREPO##*/}"
+    BOOT_GITREPO_PATH="${BOOT_GITREPO_PATH%%.git}"
+
     ## export BOOT_GITREPO to /etc/bashrc
-    grep -qF -- "export BOOT_GITREPO=$BOOT_GITREPO" "/etc/bashrc" || echo "BOOT_GITREPO=$BOOT_GITREPO" >> "/etc/bashrc"
-    
-    ## link all executable to /bin/
-    cd / && \
-    git clone $BOOT_GITREPO && \
-    REPO_ROOT="${BOOT_GITREPO##*/}" && \
-    REPO_ROOT="${REPO_ROOT%%.git}" && \
-    find /$REPO_ROOT -type f -executable -exec sh -c 'f={}&&ln -s {} /bin/${f##*/}' \;
+    grep -qF -- "export BOOT_GITREPO=$BOOT_GITREPO" "/etc/profile" || echo "BOOT_GITREPO=$BOOT_GITREPO" >> "/etc/profile"
+    grep -qF -- "export BOOT_GITREPO_PATH=$BOOT_GITREPO_PATH" "/etc/profile" || echo "BOOT_GITREPO_PATH=$BOOT_GITREPO_PATH" >> "/etc/profile"
+
+    # remove old repo and links
+    rm -rf /$BOOT_GITREPO_PATH
+    find /bin -xtype l -exec rm {} \;
+
+    ## link all executable to /bin
+    git clone $BOOT_GITREPO
+    find /$BOOT_GITREPO_PATH -type f -executable -exec sh -c 'f={}&&ln -s {} /bin/${f##*/}' \;
 fi
-GLOBAL_VAR_TEST='global var test'
 exec "$@"

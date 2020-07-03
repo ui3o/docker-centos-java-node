@@ -10,4 +10,4 @@ Docker image with:
 # Feature
 
 * $BOOT_GITREPO, add repository url to clone external script before boot
-* every shebang `#!/usr/bin/env -S bash -i` can access $BOOT_GITREPO environment variable
+* every shebang `#!/usr/bin/env -S bash -l` can access $BOOT_GITREPO environment variable
