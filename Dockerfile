@@ -10,6 +10,7 @@ RUN rm -rf /etc/alternatives/ /usr/lib/jvm/java
 RUN ln -s /usr/lib/jvm/java-11-openjdk-11.0.7.10-1.el8_1.x86_64/ /usr/lib/jvm/java
 ENV PATH="$PATH:/usr/lib/jvm/java/bin/:/usr/share/maven/bin/"
 COPY boot /usr/bin
+COPY .bashrc /root/
 
 ENTRYPOINT ["/bin/boot"]
  
