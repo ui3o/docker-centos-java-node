@@ -6,12 +6,18 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
-# script start alias
-sstart()
+# script runs alias
+runs()
 {
+    if [ $CONTAINER_DEBUG ]; then
+        set -x
+    fi
     CWD_PATH=$(readlink -f $(pwd))
     eval $@
     cd $CWD_PATH
+    if [ $CONTAINER_DEBUG ]; then
+        set +x
+    fi
 }
 
 # Source global definitions
