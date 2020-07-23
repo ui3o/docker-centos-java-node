@@ -13,7 +13,7 @@ run()
         set -x
     fi
     CWD_PATH=$(readlink -f $(pwd))
-    eval $@
+    source $@
     cd $CWD_PATH
     if [ $CONTAINER_DEBUG ]; then
         set +x
