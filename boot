@@ -1,7 +1,10 @@
 #!/usr/bin/env -S bash -e
 
-set -x
 set -e
+
+if [ $BOOT_DEBUG ]; then
+    set -x
+fi
 
 if [ $BOOT_GITREPO ]; then
 
