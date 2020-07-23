@@ -19,17 +19,17 @@ if [ $BOOT_GITREPO ]; then
     grep -qF -- "export BOOT_GITREPO_PATH=$BOOT_GITREPO_PATH" "/etc/bashrc" || echo "BOOT_GITREPO_PATH=$BOOT_GITREPO_PATH" >> "/etc/bashrc"
 
     # remove old repo and links
-    rm -rf /$BOOT_GITREPO_PATH
+    rm -rf $BOOT_GITREPO_PATH
     if [ $CONTAINER_DEBUG ]; then
-        find -L /bin/ -type l -exec echo rm broken symlink {} \;
+        find /bin/ -type l -path '$BOOT_GITREPO_PATH/*' -exec echo rm broken symlink {} \;
     fi
-    find -L /bin/ -type l -exec rm {} \;
+    find /bin/ -type l -path '$BOOT_GITREPO_PATH/*' -delete
 
     ## link all executable to /bin
     git clone $BOOT_GITREPO
     if [ $CONTAINER_DEBUG ]; then
-        find /$BOOT_GITREPO_PATH/ -type f -not -path '*/\.git/*' -executable -exec echo 'link {}' \;
+        find $BOOT_GITREPO_PATH/ -type f -not -path '*/\.git/*' -executable -exec echo 'link {}' \;
     fi
-    find /$BOOT_GITREPO_PATH/ -type f -not -path '*/\.git/*' -executable -exec sh -c 'f={}&&ln -s {} /bin/${f##*/}' \;
+    find $BOOT_GITREPO_PATH/ -type f -not -path '*/\.git/*' -executable -exec sh -c 'f={}&&ln -s {} /bin/${f##*/}' \;
 fi
 exec "$@"
