@@ -11,8 +11,8 @@ if [ $BOOT_GITREPO ]; then
     BOOT_GITREPO_PATH="${BOOT_GITREPO_PATH%%.git}"
 
     ## export BOOT_GITREPO to /etc/bashrc
-    grep -qF -- "export BOOT_GITREPO=$BOOT_GITREPO" "/etc/profile" || echo "BOOT_GITREPO=$BOOT_GITREPO" >> "/etc/profile"
-    grep -qF -- "export BOOT_GITREPO_PATH=$BOOT_GITREPO_PATH" "/etc/profile" || echo "BOOT_GITREPO_PATH=$BOOT_GITREPO_PATH" >> "/etc/profile"
+    grep -qF -- "export BOOT_GITREPO=$BOOT_GITREPO" "/etc/bashrc" || echo "BOOT_GITREPO=$BOOT_GITREPO" >> "/etc/bashrc"
+    grep -qF -- "export BOOT_GITREPO_PATH=$BOOT_GITREPO_PATH" "/etc/bashrc" || echo "BOOT_GITREPO_PATH=$BOOT_GITREPO_PATH" >> "/etc/bashrc"
 
     # remove old repo and links
     rm -rf /$BOOT_GITREPO_PATH

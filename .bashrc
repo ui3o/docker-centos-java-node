@@ -6,13 +6,13 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
-run()
+# script start alias
+sstart()
 {
-    CWD_PATH=$(pwd)
-    source "$@"
+    CWD_PATH=$(readlink -f $(pwd))
+    eval $@
     cd $CWD_PATH
 }
-export -f run
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
