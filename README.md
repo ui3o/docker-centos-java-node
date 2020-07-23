@@ -10,3 +10,4 @@ Docker image with:
 # Feature
 
 * $BOOT_GITREPO, add repository url to clone external script before boot
+* set $BOOT_DEBUG=true, to debug boot section
