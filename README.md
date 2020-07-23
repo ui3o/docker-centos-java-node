@@ -11,4 +11,4 @@ Docker image with:
 
 * $BOOT_GITREPO, add repository url to clone external script before boot
 * set $CONTAINER_DEBUG=true, to debug boot section
-* runs alias for execute script with source command
+* **run** alias for execute script with source command

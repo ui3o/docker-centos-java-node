@@ -6,8 +6,8 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
-# script runs alias
-runs()
+# script run alias
+run()
 {
     if [ $CONTAINER_DEBUG ]; then
         set -x
