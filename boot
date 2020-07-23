@@ -19,10 +19,16 @@ if [ $BOOT_GITREPO ]; then
 
     # remove old repo and links
     rm -rf /$BOOT_GITREPO_PATH
-    find /bin/ -xtype l -exec echo rm broken symlink {} \; -exec rm {} \;
+    if [ $BOOT_DEBUG ]; then
+        find /bin/ -xtype l -exec echo rm broken symlink {} \;
+    fi
+    find /bin/ -xtype l -exec rm {} \;
 
     ## link all executable to /bin
     git clone $BOOT_GITREPO
-    find /$BOOT_GITREPO_PATH/ -type f -not -path '*/\.git/*' -executable -exec echo 'link {}' \; -exec sh -c 'f={}&&ln -s {} /bin/${f##*/}' \;
+    if [ $BOOT_DEBUG ]; then
+        find /$BOOT_GITREPO_PATH/ -type f -not -path '*/\.git/*' -exec echo 'link {}' \;
+    fi
+    find /$BOOT_GITREPO_PATH/ -type f -not -path '*/\.git/*' -exec sh -c 'f={}&&ln -s {} /bin/${f##*/}' \;
 fi
 exec "$@"
