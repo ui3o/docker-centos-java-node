@@ -32,4 +32,11 @@ if [ $BOOT_GITREPO ]; then
     fi
     find $BOOT_GITREPO_PATH/ -type f -not -path '*/\.git/*' -executable -exec sh -c 'f={}&&ln -s {} /bin/${f##*/}' \;
 fi
+
+if [ $JAVA_VERSION -a $JAVA_VERSION == 8 ]; then
+    alternatives --set java java-1.8.0-openjdk.x86_64
+    rm -f /usr/lib/jvm/java
+    ln -s /etc/alternatives/java_sdk_1.8.0 /usr/lib/jvm/java
+fi
+
 exec "$@"

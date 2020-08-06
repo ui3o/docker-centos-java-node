@@ -3,7 +3,7 @@ LABEL authors="ui3o.com"
 
 RUN yum -y update
 RUN curl -sL https://rpm.nodesource.com/setup_12.x | bash -
-RUN yum install -y wget git nodejs java-11-openjdk java-11-openjdk-devel tree
+RUN yum install -y wget git nodejs java-1.8.0-openjdk java-1.8.0-openjdk-devel java-11-openjdk java-11-openjdk-devel tree
 RUN npm i -g nnr
 
 # set jdk11 as default java
