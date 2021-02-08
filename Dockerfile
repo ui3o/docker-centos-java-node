@@ -22,7 +22,7 @@ ENV PATH=${M2_HOME}/bin:${PATH}
 
 
 # install gitlab-release-note-generator
-git clone https://github.com/jk1z/gitlab-release-note-generator.git /opt/gitlab-release-note-generator && cd /opt/gitlab-release-note-generator &&  npm i
+RUN git clone https://github.com/jk1z/gitlab-release-note-generator.git /opt/gitlab-release-note-generator && cd /opt/gitlab-release-note-generator &&  npm i
 
 COPY boot /usr/bin
 COPY .bashrc /root/
