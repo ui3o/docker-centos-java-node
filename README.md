@@ -5,6 +5,7 @@ Docker image with:
 * git
 * openjdk11
 * nodejs12
+* gitlab-release-note-generator package from https://github.com/jk1z/gitlab-release-note-generator
 
 
 # Feature
