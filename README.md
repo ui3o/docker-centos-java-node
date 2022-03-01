@@ -1,3 +1,7 @@
+# !!!Deprecated!!!
+
+Use this project: https://github.com/ui3o/alpine-java-node
+
 # docker-centos-java-node
 
 Docker image with:
